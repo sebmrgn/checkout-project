@@ -58,7 +58,7 @@ workflows:
           name: build-and-push-image
           account-url: AWS_ECR_URL
           region: AWS_DEFAULT_REGION
-          repo: eks_orb_demo_app
+          repo: demo_app
           dockerfile: Dockerfile
           path: ~/project/demo_app
           tag: ${CIRCLE_SHA1}
