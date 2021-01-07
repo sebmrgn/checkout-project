@@ -63,10 +63,10 @@ workflows:
           path: ~/project/demo_app
           tag: ${CIRCLE_SHA1}
           # Uncomment if the repository does not yet exist
-      - deploy-application:
-          cluster-name: checkout-eks
-          aws-region: $AWS_DEFAULT_REGION
-          docker-image-name: "${AWS_ECR_URL}/demo_app:${CIRCLE_SHA1}"
-          version-info: "${CIRCLE_SHA1}"
-          requires:
-            - aws-ecr/build-and-push-image
+#      - deploy-application:
+#          cluster-name: checkout-eks
+#          aws-region: $AWS_DEFAULT_REGION
+#          docker-image-name: "${AWS_ECR_URL}/demo_app:${CIRCLE_SHA1}"
+#          version-info: "${CIRCLE_SHA1}"
+#          requires:
+#            - aws-ecr/build-and-push-image
