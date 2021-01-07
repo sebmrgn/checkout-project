@@ -63,7 +63,6 @@ workflows:
           path: ~/project/demo_app
           tag: ${CIRCLE_SHA1}
           # Uncomment if the repository does not yet exist
-          # create-repo: true
       - deploy-application:
           cluster-name: checkout-eks
           aws-region: $AWS_DEFAULT_REGION
