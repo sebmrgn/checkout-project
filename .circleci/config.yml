@@ -64,10 +64,12 @@ workflows:
           tag: ${CIRCLE_SHA1}
           # Uncomment if the repository does not yet exist
           # create-repo: true
-  deployment:
-    jobs:
-      - deploy-application:
-          cluster-name: eks-orb-demo-app-deployment
-          aws-region: $AWS_DEFAULT_REGION
-          docker-image-name: "${AWS_ECR_URL}/eks_orb_demo_app:${CIRCLE_SHA1}"
-          version-info: "${CIRCLE_SHA1}"
+#  deployment:
+#    jobs:
+#      - deploy-application:
+#          cluster-name: eks-orb-demo-app-deployment
+#          aws-region: $AWS_DEFAULT_REGION
+#          docker-image-name: "${AWS_ECR_URL}/eks_orb_demo_app:${CIRCLE_SHA1}"
+#          version-info: "${CIRCLE_SHA1}"
+#          requires:
+#            - aws-eks/build-and-push-image
