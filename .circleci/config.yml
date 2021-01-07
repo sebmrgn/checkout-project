@@ -52,10 +52,10 @@ jobs:
 
 
 workflows:
-  deployment:
+  build-and-deploy:
     jobs:
       - aws-ecr/build-and-push-image:
-          name: aws-ecr/build-and-push-image
+          name: build-and-push-image
           account-url: AWS_ECR_URL
           region: AWS_DEFAULT_REGION
           repo: demo_app
