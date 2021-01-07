@@ -52,7 +52,7 @@ jobs:
 
 
 workflows:
-  build_and_push_image:
+  deployment:
     jobs:
       - aws-ecr/build-and-push-image:
           name: build-and-push-image
@@ -64,8 +64,6 @@ workflows:
           tag: ${CIRCLE_SHA1}
           # Uncomment if the repository does not yet exist
           # create-repo: true
-  deployment:
-    jobs:
       - deploy-application:
           cluster-name: checkout-eks
           aws-region: $AWS_DEFAULT_REGION
