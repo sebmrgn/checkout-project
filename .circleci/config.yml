@@ -39,10 +39,15 @@ jobs:
                sed "s|DOCKER_IMAGE_NAME|<< parameters.docker-image-name >>|\
                 g;s|BUILD_DATE_VALUE|$BUILD_DATE|g;s|VERSION_INFO_VALUE|\
                 << parameters.version-info >>|g" > deployment/demo-app-deployment.yaml
-#      - aws-eks/update-kubeconfig-with-authenticator:
-#          cluster-name: << parameters.cluster-name >>
-#          install-kubectl: true
-#          aws-region: << parameters.aws-region >>
+            cat deployment/demo-app-deployment.yaml
+      - aws-eks/update-kubeconfig-with-authenticator:
+          cluster-name: << parameters.cluster-name >>
+          install-kubectl: true
+          aws-region: << parameters.aws-region >>
+      - run:
+          name: Check kubeconfig
+          command: |
+            cat /home/circleci/.kube/config
 #      - kubernetes/create-or-update-resource:
 #          resource-file-path: "deployment/demo-app-deployment.yaml"
 #          get-rollout-status: true
