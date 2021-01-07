@@ -48,12 +48,12 @@ jobs:
           name: Check kubeconfig
           command: |
             cat /home/circleci/.kube/config
-#      - kubernetes/create-or-update-resource:
-#          resource-file-path: "deployment/demo-app-deployment.yaml"
-#          get-rollout-status: true
-#          resource-name: deployment/demoapp
-#      - kubernetes/create-or-update-resource:
-#          resource-file-path: "deployment/demo-app-service.yaml"
+      - kubernetes/create-or-update-resource:
+          resource-file-path: "deployment/demo-app-deployment.yaml"
+          get-rollout-status: true
+          resource-name: deployment/demo_app
+      - kubernetes/create-or-update-resource:
+          resource-file-path: "deployment/demo-app-service.yaml"
 
 
 workflows:
