@@ -1,0 +1,12 @@
+*.tfvars
+*.tfstate*
+.terraform/
+**/inspec.lock
+*.gem
+Gemfile.lock
+terraform.tfstate.d/
+.idea/
+*.iml
+config-map-aws-auth*.yaml
+kubeconfig_*
+.DS_Store
