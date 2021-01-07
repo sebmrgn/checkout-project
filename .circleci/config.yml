@@ -72,4 +72,4 @@ workflows:
           docker-image-name: "${AWS_ECR_URL}/demo_app:${CIRCLE_SHA1}"
           version-info: "${CIRCLE_SHA1}"
           requires:
-            - aws-eks/build-and-push-image
+            - aws-ecs/build-and-push-image
