@@ -52,10 +52,8 @@ jobs:
           resource-file-path: "deployment/demo-app-deployment.yaml"
           get-rollout-status: true
           resource-name: deployment/demo_app
-      - kubernetes/create-or-update-resource:
-          resource-file-path: "deployment/demo-app-service.yaml"
-          requires:
-            - kubernetes/create-or-update-resource
+#      - kubernetes/create-or-update-resource:
+#          resource-file-path: "deployment/demo-app-service.yaml"
 
 
 workflows:
