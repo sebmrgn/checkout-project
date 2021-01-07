@@ -59,8 +59,8 @@ workflows:
           account-url: AWS_ECR_URL
           region: AWS_DEFAULT_REGION
           repo: eks_orb_demo_app
-          dockerfile: ~/project/src/Dockerfile
-          path: ~/project/src
+          dockerfile: Dockerfile
+          path: ~/project/demo_app
           tag: ${CIRCLE_SHA1}
           # Uncomment if the repository does not yet exist
           # create-repo: true
