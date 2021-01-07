@@ -1,5 +1,11 @@
-FROM nginx:alpine
-COPY . /usr/share/nginx/html
+FROM node:12
 
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+WORKDIR /usr/src/app
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+EXPOSE 8080
+
+CMD [ "node", "hello-world.js" ]
