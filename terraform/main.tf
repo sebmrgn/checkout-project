@@ -57,9 +57,18 @@ module "vpc" {
   enable_dns_support = true
   enable_dns_hostnames = true
 
+  public_subnet_tags = {
+    "kubernetes.io/role/elb" = "1"
+  }
+
+  private_subnet_tags = {
+    "kubernetes.io/role/internal-elb" = "1"
+  }
+
   tags = {
     Terraform = "true"
     Environment = "dev"
+    "kubernetes.io/cluster/checkout-eks" = "shared"
   }
 }
 
@@ -68,8 +77,8 @@ module "vpc" {
 
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
-  cluster_name    = "checkout-eks"
-  cluster_version = "1.16"
+  cluster_name    = var.cluster_name
+  cluster_version = "1.18"
   subnets         = module.vpc.private_subnets
   vpc_id          = module.vpc.vpc_id
 

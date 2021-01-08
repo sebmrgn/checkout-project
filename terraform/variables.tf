@@ -21,3 +21,8 @@ variable "cidr" {
   type        = string
   description = "CIDR to use"
 }
+
+variable "cluster_name" {
+  type = string
+  description = "Cluster name"
+}
