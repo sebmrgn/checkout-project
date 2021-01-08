@@ -27,4 +27,4 @@ spec:
         - name: BUILD_DATE
           value: "BUILD_DATE_VALUE"
         ports:
-        - containerPort: 8080
+        - containerPort: 80
