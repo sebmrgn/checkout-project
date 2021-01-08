@@ -51,7 +51,7 @@ jobs:
       - kubernetes/create-or-update-resource:
           resource-file-path: "deployment/simple-website-deployment.yaml"
           get-rollout-status: true
-          resource-name: deployment/demoapp
+          resource-name: deployment/simple-website
       - kubernetes/create-or-update-resource:
           resource-file-path: "deployment/simple-website-service.yaml"
 
@@ -64,7 +64,7 @@ workflows:
           region: AWS_DEFAULT_REGION
           repo: demo_app
           dockerfile: Dockerfile
-          path: ~/project/demo_app
+          path: ~/project/simple-website
           tag: ${CIRCLE_SHA1}
           # Uncomment if the repository does not yet exist
       - deploy-application:
