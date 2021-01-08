@@ -43,10 +43,6 @@ module "vpc" {
   name = "checkout-vpc"
   cidr = var.cidr
 
-//  azs             = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
-//  private_subnets = ["10.100.1.0/24", "10.100.2.0/24", "10.100.3.0/24"]
-//  public_subnets  = ["10.100.101.0/24", "10.100.102.0/24", "10.100.103.0/24"]
-
   azs             = var.azs
   private_subnets = var.private_subnets
   public_subnets  = var.public_subnets
@@ -71,7 +67,6 @@ module "vpc" {
     "kubernetes.io/cluster/checkout-eks" = "shared"
   }
 }
-
 
 ## Create the EKS cluster using official module
 

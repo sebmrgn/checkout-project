@@ -62,7 +62,7 @@ workflows:
       - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_URL
           region: AWS_DEFAULT_REGION
-          repo: demo_app
+          repo: simple-website
           dockerfile: Dockerfile
           path: ~/project/simple-website
           tag: ${CIRCLE_SHA1}
@@ -70,7 +70,7 @@ workflows:
       - deploy-application:
           cluster-name: checkout-eks
           aws-region: $AWS_DEFAULT_REGION
-          docker-image-name: "${AWS_ECR_URL}/demo_app:${CIRCLE_SHA1}"
+          docker-image-name: "${AWS_ECR_URL}/simple-website:${CIRCLE_SHA1}"
           version-info: "${CIRCLE_SHA1}"
           requires:
             - aws-ecr/build-and-push-image
