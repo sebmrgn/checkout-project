@@ -1,5 +1,4 @@
-[![CircleCI](https://circleci.com/gh/circleci/play.svg?style=svg)](https://app.circleci.com/pipelines/github/sebmrgn/play)
-
+[![CircleCI](https://circleci.com/gh/sebmrgn/play.svg?style=svg)](https://app.circleci.com/pipelines/github/sebmrgn/play)
 ## Simple website CI/CD pipeline with K8S and CircleCI
 
 A simple project to create a managed Kubernetes cluster on AWS EKS and host a simple webapp. 
@@ -36,7 +35,7 @@ chmod +x terraform/scripts/prometheus-grafana.sh
 - CircleCi will automatically look for a config file ".circleci/config.yml"
 - deployments are triggered automatically when changes have been commited to the master branch
 
-## Simple-website
+### Simple-website
 
 - to verify the deployment has run successfully
 ```bash
