@@ -11,7 +11,7 @@ In this project we:
 
 ### Diagram
 
-
+![Diagram](diagram.png)
 
 ### Infrastructure
 
