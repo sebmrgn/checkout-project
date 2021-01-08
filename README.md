@@ -11,7 +11,8 @@ In this project we:
 
 ### Diagram
 
-![Diagram](diagram.png)
+![diagram](https://github.com/sebmrgn/play/blob/master/diagram.png?raw=true)
+
 
 ### Infrastructure
 
