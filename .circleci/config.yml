@@ -35,11 +35,11 @@ jobs:
             # This is to avoid hardcoding the image name in the manifest, to make this
             # demo project more portable.
             BUILD_DATE=$(date '+%Y%m%d%H%M%S')
-            cat deployment/demo-app-deployment.yaml.template |\
+            cat deployment/simple-website-deployment.yaml.template |\
                sed "s|DOCKER_IMAGE_NAME|<< parameters.docker-image-name >>|\
                 g;s|BUILD_DATE_VALUE|$BUILD_DATE|g;s|VERSION_INFO_VALUE|\
-                << parameters.version-info >>|g" > deployment/demo-app-deployment.yaml
-            cat deployment/demo-app-deployment.yaml
+                << parameters.version-info >>|g" > deployment/simple-website-deployment.yaml
+            cat deployment/simple-website-deployment.yaml
       - aws-eks/update-kubeconfig-with-authenticator:
           cluster-name: << parameters.cluster-name >>
           install-kubectl: true
@@ -49,11 +49,11 @@ jobs:
           command: |
             cat /home/circleci/.kube/config
       - kubernetes/create-or-update-resource:
-          resource-file-path: "deployment/demo-app-deployment.yaml"
+          resource-file-path: "deployment/simple-website-deployment.yaml"
           get-rollout-status: true
           resource-name: deployment/demoapp
       - kubernetes/create-or-update-resource:
-          resource-file-path: "deployment/demo-app-service.yaml"
+          resource-file-path: "deployment/simple-website-service.yaml"
 
 
 workflows:
