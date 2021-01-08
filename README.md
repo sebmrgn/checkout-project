@@ -1,5 +1,4 @@
-# Template:
-[![sebmrgn](https://circleci.com/gh/mrgn/play.svg?style=svg)](https://app.circleci.com/pipelines/github/sebmrgn/play)
+[![CircleCI](https://circleci.com/gh/circleci/play.svg?style=svg)](https://app.circleci.com/pipelines/github/sebmrgn/play)
 
 ## Simple website CI/CD pipeline with K8S and CircleCI
 
