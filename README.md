@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/sebmrgn/play.svg?style=svg)](https://app.circleci.com/pipelines/github/sebmrgn/play)
+[![CircleCI](https://circleci.com/gh/sebmrgn/checkout-project.svg?style=svg)](https://app.circleci.com/pipelines/github/sebmrgn/checkout-project)
 ## Simple website CI/CD pipeline with K8S and CircleCI
 
 A simple project to create a managed Kubernetes cluster on AWS EKS and host a simple webapp. 
@@ -11,12 +11,12 @@ In this project we:
 
 ### Diagram
 
-![diagram](https://github.com/sebmrgn/play/blob/master/diagram.png?raw=true)
+![diagram](https://github.com/sebmrgn/checkout-project/blob/master/diagram.png?raw=true)
 
 
 ### Infrastructure
 
-- deploy the EKS cluster via Terraform as mentioned in the guide [here](https://github.com/sebmrgn/play/blob/master/terraform/README.md)
+- deploy the EKS cluster via Terraform as mentioned in the guide [here](https://github.com/sebmrgn/checkout-project/blob/master/terraform/README.md)
 - deploy Prometheus and grafana using the script
 ```bash
 chmod +x terraform/scripts/prometheus-grafana.sh
