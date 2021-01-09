@@ -28,7 +28,7 @@ chmod +x terraform/scripts/prometheus-grafana.sh
 ### CircleCI
 
 - Sign in to CircleCI with your GitHub auth
-- Add the simple-website project
+- Add the "checkout-project" project
 - Go to Project Settings - Environment variables and set the values for the following:
     - AWS_ACCESS_KEY_ID
     - AWS_SECRET_ACCESS_KEY
