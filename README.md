@@ -16,8 +16,9 @@ In this project we:
 
 ### Infrastructure
 
+- deploy a VPC with private (for EKS cluster) and public subnets (for NLB)
 - deploy the EKS cluster via Terraform as mentioned in the guide [here](https://github.com/sebmrgn/checkout-project/blob/master/terraform/README.md)
-- deploy Prometheus and grafana using the script
+- deploy Prometheus and Grafana using the script
 ```bash
 chmod +x terraform/scripts/prometheus-grafana.sh
 ./prometheus-grafana.sh
@@ -26,15 +27,18 @@ chmod +x terraform/scripts/prometheus-grafana.sh
 
 ### CircleCI
 
-- Login to your CircleCI account
+- Sign in to CircleCI with your GitHub auth
 - Add the simple-website project
 - Go to Project Settings - Environment variables and set the values for the following:
     - AWS_ACCESS_KEY_ID
     - AWS_SECRET_ACCESS_KEY
     - AWS_ECR_URL
     - AWS_DEFAULT_REGION
-- CircleCi will automatically look for a config file ".circleci/config.yml"
-- deployments are triggered automatically when changes have been commited to the master branch
+- CircleCi will automatically look for a config file ".circleci/config.yml" in your project
+- deployments are triggered automatically when changes have been pushed to the master branch
+- the pipeline has 2 stages
+    - build-and-push-image 
+    - deploy-application
 
 ### Simple-website
 
