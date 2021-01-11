@@ -7,19 +7,23 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo add grafana https://grafana.github.io/helm-charts
 
 ## create a new NS and install Prometheus
-kubectl create namespace prometheus
+kubectl create namespace monitoring
+
 helm install prometheus prometheus-community/prometheus \
-    --namespace prometheus \
+    --namespace monitoring \
     --set alertmanager.persistentVolume.storageClass="gp2" \
     --set server.persistentVolume.storageClass="gp2"
 
+## Get a password from SSM Param Store
 
-## create a new NS and install Grafana
-kubectl create namespace grafana
+ADMIN_PASS=`aws ssm get-parameters --name "grafana" --query "Parameters[*].[Value]" --output text | cat`
+echo $ADMIN_PASS
+
+## install Grafana
 helm install grafana grafana/grafana \
-    --namespace grafana \
+    --namespace monitoring \
     --set persistence.storageClassName="gp2" \
     --set persistence.enabled=true \
-    --set adminPassword='EKS!sAWSome' \
+    --set adminPassword=${ADMIN_PASS} \
     --values /Users/seb/personal_projects/Checkout_project/terraform/scripts/grafana.yaml \
     --set service.type=LoadBalancer
