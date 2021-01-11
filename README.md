@@ -24,6 +24,24 @@ chmod +x terraform/scripts/prometheus-grafana.sh
 ./prometheus-grafana.sh
 ```
 
+- to access Prometheus(* port forwarding, since no internal network for this project)
+```bash
+chmod +x terraform/scripts/prometheus-grafana.sh
+./prometheus-grafana.sh
+
+export POD_NAME=$(kubectl get pods --namespace monitoring -l "app=prometheus,component=server" -o jsonpath="{.items[0].metadata.name}")
+kubectl --namespace monitoring port-forward $POD_NAME 9090
+```
+
+- Grafana is provisioning an ELB in the public subnet, so the dashboard can be accessed externally
+- to find the endpoint and password
+```bash
+➜ git:(master) ✗ kubectl get svc grafana -n monitoring
+NAME      TYPE           CLUSTER-IP     EXTERNAL-IP                                                               PORT(S)        AGE
+grafana   LoadBalancer   172.20.89.85   a2bca697608b34c0ebfe73a976121aa8-1553215385.eu-west-1.elb.amazonaws.com   80:30090/TCP   10m
+
+kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+```
 
 ### CircleCI
 
@@ -40,19 +58,32 @@ chmod +x terraform/scripts/prometheus-grafana.sh
     - build-and-push-image 
     - deploy-application
 
+![circle](https://github.com/sebmrgn/checkout-project/blob/master/circleci.png?raw=true)
+
 ### Simple-website
 
 - to verify the deployment has run successfully
 ```bash
-➜  terraform git:(master) ✗ kubectl get svc simple-website
+➜ git:(master) ✗ kubectl get svc simple-website
 NAME             TYPE           CLUSTER-IP    EXTERNAL-IP                                                                     PORT(S)        AGE
-simple-website   LoadBalancer   172.20.2.84   adc524b3786134fdaa5afa7a69534535-d83a932b7311ca1b.elb.eu-west-1.amazonaws.com   80:31262/TCP   73m
+simple-website   LoadBalancer   172.20.2.84   adc524b3786134fdaa5afa7a69534535-d83a932b7311ca1b.elb.eu-west-1.amazonaws.com   80:31262/TCP   4m27s
 ```
 
 - to confirm the application is available publicly, paste the EXTERNAL-IP in browser
 
+### Scaling
 
+- to scale up the simple-website, just update the number of pod replicas running
+```bash
+➜ git:(master) ✗ kubectl scale --replicas=2 deployment.apps/simple-website
+deployment.apps/simple-website scaled
 
+➜ git:(master) ✗ kubectl get pods --watch
+NAME                              READY   STATUS    RESTARTS   AGE
+simple-website-85fdd44cb9-2rh68   1/1     Running   0          59s
+simple-website-85fdd44cb9-t7kd7   1/1     Running   0          5m31s
+```
+- second service is automatically added to the NLB target group
 
 
 
