@@ -17,7 +17,6 @@ helm install prometheus prometheus-community/prometheus \
 ## Get a password from SSM Param Store
 
 ADMIN_PASS=`aws ssm get-parameters --name "grafana" --query "Parameters[*].[Value]" --output text | cat`
-echo $ADMIN_PASS
 
 ## install Grafana
 helm install grafana grafana/grafana \
