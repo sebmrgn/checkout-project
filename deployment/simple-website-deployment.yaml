@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-website
+  labels:
+    app: simple-website
+spec:
+  selector:
+    matchLabels:
+      app: simple-website
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: simple-website
+    spec:
+      containers:
+      - name: app
+        image: sebymargis/simple-image:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: VERSION_INFO
+          value: 1
+        - name: BUILD_DATE
+          value: 1
+        ports:
+        - containerPort: 80
